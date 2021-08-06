@@ -17,5 +17,5 @@ if [ $? -ne 0 ]
 then
    echo -e "${RED}TESTS FAILED${NC}"
    exit 1
-fi
+fi   iijijijijs
 echo -e "${GREEN}TESTS PASSED${NC}"

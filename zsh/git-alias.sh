@@ -3,7 +3,8 @@
 
 # Never make an alias dependent of another one, only rename
 
-alias ga="git add -u"
+alias g="git"
+alias ga="git add -u" # Add all modified files if no args provided, otherwise only add the specified files
 alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
@@ -14,5 +15,14 @@ gr(){
     git rebase -i HEAD~$1
 }
 alias gs="git status"
-alias gout="git checkout"
-alias goutb="git checkout -b"
+gout() {
+    git checkout $1
+    if (( $? )) # https://stackoverflow.com/a/43481571/11955835
+    then
+        read -rk "REPLY?No branch named $1, press ENTER to create it "
+        if [[ "$REPLY" == $'\n' ]]
+        then
+            git checkout -b $1
+        fi
+    fi
+}
