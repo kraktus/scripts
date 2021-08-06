@@ -1,15 +1,20 @@
+#!/usr/bin/env zsh
+
 # https://github.com/ornicar/dotfiles/tree/master/zsh
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
+source utils.zsh
 # Never make an alias dependent of another one, only rename
 
 alias g="git"
 alias ga="git add -u" # Add all modified files if no args provided, otherwise only add the specified files
+alias gaa="git add -A"
 alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
 alias gp="git push"
-alias gph="git pull head master && git push"
+alias gph="git pull origin $(git-current-branch) && git push"
+
 # Shortcut for interactive rebase
 gr(){
     git rebase -i HEAD~$1
