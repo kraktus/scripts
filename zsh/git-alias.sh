@@ -3,16 +3,16 @@
 
 # Never make an alias dependent of another one, only rename
 
-alias gita="git add -u"
-alias gitb="git branch"
-alias gitc="git commit -v"
-alias gitd="git diff"
-alias gitp="git push"
-alias gitph="git pull head master && git push"
+alias ga="git add -u"
+alias gb="git branch"
+alias gc="git commit -v"
+alias gd="git diff"
+alias gp="git push"
+alias gph="git pull head master && git push"
 # Shortcut for interactive rebase
-gitr(){
+gr(){
     git rebase -i HEAD~$1
 }
-alias gits="git status"
-alias gitout="git checkout"
-alias gitoutb="git checkout -b"
+alias gs="git status"
+alias gout="git checkout"
+alias goutb="git checkout -b"
