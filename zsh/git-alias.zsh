@@ -12,7 +12,7 @@ alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
 gp() {
-    git push
+    git push $@
     if (( $? ))
     then
         if utils-confirm "Press ENTER to create the remote branch "
@@ -29,7 +29,7 @@ gr(){
 }
 alias gs="git status"
 go() { # git checkout gitout gout go
-    git checkout $1
+    git checkout $@
     if (( $? ))
     then
         if utils-confirm "No branch named $1, press ENTER to create it "
