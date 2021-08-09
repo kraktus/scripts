@@ -11,7 +11,16 @@ alias gaa="git add -A"
 alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
-alias gp="git push"
+gp() {
+    git push
+    if (( $? ))
+    then
+        if utils-confirm "No branch named $1, press ENTER to create it "
+        then
+            git checkout -b $1
+        fi
+    fi
+}
 alias gph="git pull head $(utils-git-current-branch) && git push"
 
 # Shortcut for interactive rebase
@@ -21,7 +30,7 @@ gr(){
 alias gs="git status"
 go() { # git checkout gitout gout go
     git checkout $1
-    if (( $? )) # https://stackoverflow.com/a/43481571/11955835
+    if (( $? ))
     then
         if utils-confirm "No branch named $1, press ENTER to create it "
         then
