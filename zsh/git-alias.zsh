@@ -12,7 +12,7 @@ alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
 alias gp="git push"
-alias gph="git pull head $(utils-git-current-branch) && git push"
+alias gph="git pull head $(git-current-branch) && git push"
 
 # Shortcut for interactive rebase
 gr(){
