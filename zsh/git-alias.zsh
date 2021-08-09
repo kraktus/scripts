@@ -19,12 +19,11 @@ gr(){
     git rebase -i HEAD~$1
 }
 alias gs="git status"
-gout() {
+go() { # git checkout gitout gout go
     git checkout $1
     if (( $? )) # https://stackoverflow.com/a/43481571/11955835
     then
-        read -rk "REPLY?No branch named $1, press ENTER to create it "
-        if [[ "$REPLY" == $'\n' ]]
+        if utils-confirm "No branch named $1, press ENTER to create it "
         then
             git checkout -b $1
         fi
