@@ -6,6 +6,6 @@ git-current-branch() {
 }
 
 confirm() {
-    read -rk "REPLY?$1"
+    read -rk "REPLY?>>>$1"
     [[ "$REPLY" == $'\n' ]]
 }
