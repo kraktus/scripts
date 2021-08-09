@@ -11,7 +11,7 @@ alias ls="ls -Gp"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
 # https://stackoverflow.com/questions/56284264/recommended-method-for-reloading-zshrc-source-vs-exec#56303297
 # With exec, all (unexported) variables in your shell are lost
-alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts/zsh && exec zsh"
+alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts/zsh && exec zsh" # https://github.com/sublimehq/sublime_text/issues/4740
 alias modif-p="subl --wait ~/.zshrc && exec zsh"
 alias mongo="mongosh"
 alias profile="python3 -m cProfile -s tottime"
