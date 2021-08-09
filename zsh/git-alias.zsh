@@ -15,9 +15,9 @@ gp() {
     git push
     if (( $? ))
     then
-        if utils-confirm "No branch named $1, press ENTER to create it "
+        if utils-confirm "Press ENTER to create the remote branch "
         then
-            git checkout -b $1
+            git push --set-upstream origin $(utils-git-current-branch)
         fi
     fi
 }
