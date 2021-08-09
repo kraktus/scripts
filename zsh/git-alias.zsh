@@ -3,7 +3,6 @@
 # https://github.com/ornicar/dotfiles/tree/master/zsh
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
-source utils.zsh
 # Never make an alias dependent of another one, only rename
 
 alias g="git"
@@ -13,7 +12,7 @@ alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
 alias gp="git push"
-alias gph="git pull origin $(git-current-branch) && git push"
+alias gph="git pull head $(git-current-branch) && git push"
 
 # Shortcut for interactive rebase
 gr(){
