@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-git-current-branch() {
+utils-git-current-branch() {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
     echo ${ref#refs/heads/}
 }
 
-confirm() {
+utils-confirm() {
     read -rk "REPLY?$1"
     [[ "$REPLY" == $'\n' ]]
 }
