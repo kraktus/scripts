@@ -23,6 +23,8 @@ venv(){
     then
         echo "No venv found, creating one..."
         python3 -m venv venv
+        pip3 install --upgrade pip
+        # install deps
         source venv/bin/activate
     fi
 }
