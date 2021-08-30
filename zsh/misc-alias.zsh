@@ -22,9 +22,7 @@ venv(){
     if (( $? )) # https://stackoverflow.com/a/43481571/11955835
     then
         echo "No venv found, creating one..."
-        python3 -m venv venv
-        pip3 install --upgrade pip
-        # install deps
+        python3 -m venv venv --upgrade-deps # thanks 3.9
         source venv/bin/activate
     fi
 }
