@@ -17,6 +17,17 @@ alias mongo="mongosh"
 alias profile="python3 -m cProfile -s tottime"
 alias py="python"
 alias py3="python3"
+s(){
+    local project="$(ls | grep .sublime-project)"
+    if [ -z "${project}" ] # check if empty string https://stackoverflow.com/questions/21274178/how-to-check-for-empty-string-in-ksh#21279027
+    then
+        echo "No Sublime Project found"
+        subl .
+    else
+        echo "Sublime Project: $project found"
+        subl --project "$project"
+    fi
+}
 venv(){
     source venv/bin/activate
     if (( $? )) # https://stackoverflow.com/a/43481571/11955835
