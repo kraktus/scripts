@@ -6,8 +6,16 @@
 # Never make an alias dependent of another one, only rename
 
 alias g="git"
-alias ga="git add -u" # Add all modified files if no args provided, otherwise only add the specified files
+ga(){  # Add all modified files if no args provided, otherwise only add the specified files
+    if [ -z $@ ]
+    then
+        git add -u
+    else
+        git add $@
+    fi
+}
 alias gaa="git add -A"
+alias gac="git add -u && git commit -v"
 alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
@@ -21,6 +29,7 @@ gp() {
         fi
     fi
 }
+alias gpf="git push -f"
 alias gph="git pull head $(utils-git-current-branch) && git push"
 
 # Shortcut for interactive rebase
