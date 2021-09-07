@@ -6,6 +6,9 @@
 
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
 
+alias cch="cargo check"
+alias cr="cargo run"
+alias crr="cargo run --release"
 alias dea="deactivate"
 alias ls="ls -Gp"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc

@@ -34,7 +34,7 @@ alias gph="git pull head $(utils-git-current-branch) && git push"
 
 # Shortcut for interactive rebase
 gr(){
-    git rebase -i HEAD~$1
+    git rebase --committer-date-is-author-date -i HEAD~$1 # https://stackoverflow.com/a/2976598/11955835
 }
 alias gs="git status"
 go() { # git checkout gitout gout go
