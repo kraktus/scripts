@@ -1,0 +1,10 @@
+// Reminder, update setting in scripts/
+{
+	"theme": "auto",
+	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"show_encoding": true
+}

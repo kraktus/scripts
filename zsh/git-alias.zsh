@@ -16,6 +16,7 @@ ga(){  # Add all modified files if no args provided, otherwise only add the spec
 }
 alias gaa="git add -A"
 alias gac="git add -u && git commit -v"
+alias gaac="git add -A && git commit -v"
 alias gb="git branch"
 alias gc="git commit -v"
 alias gd="git diff"
