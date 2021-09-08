@@ -18,6 +18,20 @@ alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts/zs
 alias modif-p="subl --wait ~/.zshrc && exec zsh"
 alias mongo="mongosh"
 alias profile="python3 -m cProfile -s tottime"
+alias pip='echo "USING PIP3" && pip3'
+pip3(){
+    if [[ "$1" == "install" ]]
+    then
+        if [ -z "$VIRTUAL_ENV" ]
+        then
+            echo "Not running in a venv, ABORTING"
+        else
+            python3 -m pip $@
+        fi
+    else
+        python3 -m pip $@
+    fi
+} 
 alias py="python"
 alias py3="python3"
 s(){
