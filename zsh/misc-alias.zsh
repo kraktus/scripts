@@ -4,7 +4,10 @@
 
 # Never make an alias dependent of another one, only rename
 
+# https://zsh.sourceforge.io/Doc/Release/Options.html#Options
+setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
+SAVEHIST=10000
 
 alias cch="cargo check"
 alias cr="cargo run"
@@ -14,7 +17,7 @@ alias ls="ls -Gp"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
 # https://stackoverflow.com/questions/56284264/recommended-method-for-reloading-zshrc-source-vs-exec#56303297
 # With exec, all (unexported) variables in your shell are lost
-alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts/zsh && exec zsh" # https://github.com/sublimehq/sublime_text/issues/4740
+alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts && exec zsh" # https://github.com/sublimehq/sublime_text/issues/4740
 alias modif-p="subl --wait ~/.zshrc && exec zsh"
 alias mongo="mongosh"
 alias profile="python3 -m cProfile -s tottime"
@@ -59,4 +62,3 @@ venv(){
         source venv/bin/activate
     fi
 }
-alias ..="cd .."
