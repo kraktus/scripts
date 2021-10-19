@@ -19,6 +19,7 @@ alias gac="git add -u && git commit -v"
 alias gaac="git add -A && git commit -v"
 alias gb="git branch"
 alias gc="git commit -v"
+alias g-clean="git branch --merged | grep -v \* | xargs git branch -D"
 alias gd="git diff"
 gp() {
     git push $@
@@ -31,13 +32,23 @@ gp() {
     fi
 }
 alias gpf="git push -f"
-alias gph="git pull head $(utils-git-current-branch) && git push"
+gph(){
+    echo "git pull head $(utils-git-current-branch) && git push"
+    git pull head $(utils-git-current-branch) && git push
+    if (( $? ))
+    then
+        echo "Error with remote head, trying origin"
+        echo "git pull origin $(utils-git-current-branch) && git push"
+        git pull origin $(utils-git-current-branch) && git push
+    fi
+}
 
 # Shortcut for interactive rebase
 gr(){
     git rebase --committer-date-is-author-date -i HEAD~$1 # https://stackoverflow.com/a/2976598/11955835
 }
-alias grs="git restore --staged"
+alias grs="git restore"
+alias grss="git restore --staged"
 alias gs="git status"
 go() { # git checkout gitout gout go
     git checkout $@
