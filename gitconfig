@@ -1,0 +1,11 @@
+# /!\ Linked to a public repo no sensitive information
+[core]
+	editor = subl -n -w
+	excludesfile = ~/.gitignore_global
+[user]
+	email = kraktus@users.noreply.github.com
+	name = kraktus
+[pull]
+	rebase = true
+[init]
+	defaultBranch = master
