@@ -6,5 +6,6 @@
 	[
 		"Vintage",
 	],
-	"show_encoding": true
+	"show_encoding": true,
+	"font_size": 12,
 }
