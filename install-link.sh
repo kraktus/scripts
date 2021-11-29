@@ -29,6 +29,6 @@ link (){
 
 link gitconfig ~/.gitconfig
 link gitignore_global ~/.gitignore_global
-link rustfmt.toml ~/.config/rustfmt.toml
+link rustfmt.toml ~/.rustfmt.toml
 #link Sublime/Preferences.sublime-settings $SUBLIME_PATH/Preferences.sublime-settings
 #link Sublime/py-template.sublime-snippet $SUBLIME_PATH/py-template.sublime-snippet
