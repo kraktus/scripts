@@ -15,13 +15,19 @@ link (){
     TO=$2
 
     printf "ln -s %s %s\n" $FROM $TO
-
+    # compare the two files
+    if cmp -s "$FROM" "$TO" ; # https://serverfault.com/questions/674358/how-to-test-if-two-given-files-are-identical
+    then 
+       echo "Files identical"
+    else
+       echo "Something changed"
+    fi
     rm -i $TO
     ln -s $FROM $TO
 }
 
 
-#link gitconfig ~/.gitconfig
-#link gitignore_global ~/.gitignore_global
-#link Sublime/Preferences.sublime-settings "$SUBLIME_PATH/Preferences.sublime-settings"
-#link Sublime/py-template.sublime-snippet "$SUBLIME_PATH/py-template.sublime-snippet"
+link gitconfig ~/.gitconfig
+link gitignore_global ~/.gitignore_global
+#link Sublime/Preferences.sublime-settings $SUBLIME_PATH/Preferences.sublime-settings
+#link Sublime/py-template.sublime-snippet $SUBLIME_PATH/py-template.sublime-snippet
