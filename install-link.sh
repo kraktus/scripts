@@ -23,11 +23,12 @@ link (){
        echo "Something changed"
     fi
     rm -i $TO
-    ln -s $FROM $TO
+    ln -s $FROM $TO && echo "File linked"
 }
 
 
 link gitconfig ~/.gitconfig
 link gitignore_global ~/.gitignore_global
+link rustfmt.toml ~/.config/rustfmt.toml
 #link Sublime/Preferences.sublime-settings $SUBLIME_PATH/Preferences.sublime-settings
 #link Sublime/py-template.sublime-snippet $SUBLIME_PATH/py-template.sublime-snippet
