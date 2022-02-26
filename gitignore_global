@@ -1,3 +1,6 @@
 .DS_Store
 discord.log
 .env
+/venv
+sn.sh
+ssh.sh
