@@ -9,6 +9,15 @@ setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
 SAVEHIST=10000
 
+# enable auto-completion for brew added CLI: https://docs.brew.sh/Shell-Completion
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
 alias cch="cargo check"
 alias cr="cargo run"
 alias crr="cargo run --release"
@@ -20,6 +29,7 @@ alias ls="ls -Gp"
 alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts && exec zsh" # https://github.com/sublimehq/sublime_text/issues/4740
 alias modif-p="subl --wait ~/.zshrc && exec zsh"
 alias mongo="mongosh"
+alias path="realpath"
 alias profile="python3 -m cProfile -s tottime"
 alias pip='echo "USING PIP3" && pip3'
 pip3(){
