@@ -4,10 +4,6 @@
 
 # Never make an alias dependent of another one, only rename
 
-alias cch="cargo check"
-alias cr="cargo run"
-alias crr="cargo run --release"
-alias ct="cargo test"
 alias dea="deactivate"
 alias ls="ls -Gp"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
