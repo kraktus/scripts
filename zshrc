@@ -19,4 +19,4 @@ then
 fi
 
 # aliases
-for zsh_file (zsh/*.zsh) source $zsh_file
+for zsh_file (~/Github/scripts/zsh/*.zsh) source $zsh_file

@@ -1,3 +1,3 @@
 # Documentation
 
-In `~/.zshrc`, run `source ~/Github/scripts/.zshrc`
+In `~/.zshrc`, run `source ~/Github/scripts/zshrc`
