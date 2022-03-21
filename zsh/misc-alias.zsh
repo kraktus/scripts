@@ -4,23 +4,10 @@
 
 # Never make an alias dependent of another one, only rename
 
-# https://zsh.sourceforge.io/Doc/Release/Options.html#Options
-setopt AUTO_CD
-setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
-SAVEHIST=10000
-
-# enable auto-completion for brew added CLI: https://docs.brew.sh/Shell-Completion
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-  autoload -Uz compinit
-  compinit
-fi
-
 alias cch="cargo check"
 alias cr="cargo run"
 alias crr="cargo run --release"
+alias ct="cargo test"
 alias dea="deactivate"
 alias ls="ls -Gp"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
