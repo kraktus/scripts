@@ -7,6 +7,7 @@
 alias dea="deactivate"
 alias ssh-keygen="ssh-keygen -c Sol"
 alias ls="ls -Gp"
+alias lg="lazygit"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
 # https://stackoverflow.com/questions/56284264/recommended-method-for-reloading-zshrc-source-vs-exec#56303297
 # With exec, all (unexported) variables in your shell are lost
