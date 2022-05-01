@@ -11,9 +11,7 @@ import argparse
 import json
 import logging
 import logging.handlers
-import mplfinance as mpf
 import os
-import pandas as pd
 import requests
 import sys
 
