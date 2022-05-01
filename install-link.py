@@ -28,7 +28,7 @@ LOG_PATH=f"{__file__}.log"
 
 # Absolute path this script is in
 SCRIPTPATH=Path(__file__).resolve(strict=True).parent
-SUBLIME_PATH=Path("~/Library/Application Support/Sublime Text").expanduser().resolve(strict=True)
+SUBLIME_PATH=Path("~/Library/Application Support/Sublime Text/Packages/User/").expanduser().resolve(strict=True)
 
 ########
 # Logs #
@@ -59,17 +59,19 @@ def link(from_script_dir: str, to: str):
 	from_path = (SCRIPTPATH / Path(from_script_dir)).resolve(strict=True)
 	to_path = Path(to).expanduser().resolve()
 	log.info(f"Linking {from_path} to {to_path}")
-	if filecmp.cmp(from_path, to_path):
+	if to_path.is_file() and filecmp.cmp(from_path, to_path):
 		log.info("Files denticals")
 	else:
 		log.info("Files changed")
-		time.sleep(60)
-		from_path.symlink_to(to_path)
+		to_path.unlink()
+		# Warning This function does not make this path a hard link to target, despite the implication of the function and argument names.
+		from_path.link_to(to_path)
 
 def main():
     link("gitconfig", "~/.gitconfig")
     link("gitignore_global", "~/.gitignore_global")
     link("Sublime/Preferences.sublime-settings", SUBLIME_PATH / "Preferences.sublime-settings")
+    link("Sublime/py-template.sublime-snippet", SUBLIME_PATH / "py-template.sublime-snippet")
 
 
 ########

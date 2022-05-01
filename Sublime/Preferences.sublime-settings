@@ -1,4 +1,4 @@
-// Reminder, update setting in scripts/
+// Symlinked to scripts/Sublime/Preferences.sublime-settings
 {
 	"theme": "auto",
 	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
