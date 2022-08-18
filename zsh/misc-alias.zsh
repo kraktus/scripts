@@ -5,7 +5,7 @@
 # Never make an alias dependent of another one, only rename
 
 alias dea="deactivate"
-alias ssh-keygen="ssh-keygen -c Sol"
+alias ssh-keygen="ssh-keygen -C Sol"
 alias ls="ls -Gp"
 alias lg="lazygit"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
