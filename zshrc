@@ -7,7 +7,7 @@ export EDITOR='subl -w'
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
-SAVEHIST=100000
+SAVEHIST=10000000
 
 # enable auto-completion for brew added CLI: https://docs.brew.sh/Shell-Completion
 if type brew &>/dev/null
