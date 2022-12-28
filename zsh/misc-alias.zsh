@@ -4,6 +4,7 @@
 
 # Never make an alias dependent of another one, only rename
 
+alias clippy-loc="~/Github/rust-clippy/target/debug/cargo-clippy"
 alias dea="deactivate"
 alias ssh-keygen="ssh-keygen -C Sol"
 alias ls="ls -Gp"

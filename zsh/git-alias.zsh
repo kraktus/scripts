@@ -42,6 +42,9 @@ gph(){
         git pull origin $(utils-git-current-branch) && git push
     fi
 }
+g-pr(){
+    git fetch head pull/$1/head:"pr-$1" --force && git checkout "pr-$1"
+}
 
 # Shortcut for interactive rebase
 gr(){
@@ -58,5 +61,14 @@ go() { # git checkout gitout gout go
         then
             git checkout -b $1
         fi
+    fi
+}
+gom() {
+    echo "git checkout master"
+    git checkout master
+    if (( $? ))
+    then
+        echo "No master branch, trying main"
+        git checkout main
     fi
 }

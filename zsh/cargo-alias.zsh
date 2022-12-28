@@ -5,7 +5,7 @@
 # Never make an alias dependent of another one, only rename
 
 alias c="cargo"
-alias cf="cargo fmt"
+alias cf="cargo fmt && taplo fmt --config ~/Github/scripts/.taplo.toml"
 alias ch="cargo check"
 alias cr="cargo run"
 alias crr="cargo run --release"
