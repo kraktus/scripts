@@ -4,6 +4,8 @@
 
 export EDITOR='subl -w'
 
+export HOMEBREW_NO_GOOGLE_ANALYTICS=true # https://brew.sh/2023/02/16/homebrew-4.0.0/
+
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835

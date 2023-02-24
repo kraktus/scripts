@@ -1,4 +1,6 @@
 # /!\ Linked to a public repo no sensitive information
+[advice]
+	addIgnoredFile = false
 [core]
 	editor = subl -n -w
 	excludesfile = ~/.gitignore_global
