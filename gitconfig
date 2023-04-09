@@ -1,9 +1,14 @@
 # /!\ Linked to a public repo no sensitive information
 [advice]
 	addIgnoredFile = false
+[alias]
+    find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+[color]
+	# pager = false
 [core]
 	editor = subl -n -w
 	excludesfile = ~/.gitignore_global
+	# pager = subl --command set_view_scratch -nw - 
 [user]
 	email = kraktus@users.noreply.github.com
 	name = kraktus

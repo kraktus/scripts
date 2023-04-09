@@ -19,6 +19,13 @@ alias gac="git add -u && git commit -v"
 alias gaac="git add -A && git commit -v"
 alias gb="git branch"
 alias gc="git commit -v"
+# automatically concatenate the current unstaged changes to the last commit
+g-concat() {
+    git add -A && \
+    git commit -a --allow-empty-message -m '' && \
+    git reset --soft HEAD~2 && \
+    git commit -v --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
+}
 alias g-clean="git branch --merged | grep -v \* | xargs git branch -D"
 alias gd="git diff"
 gp() {
