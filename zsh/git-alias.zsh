@@ -79,3 +79,4 @@ gom() {
         git checkout main
     fi
 }
+gomph() {gom && gph}
