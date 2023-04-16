@@ -21,7 +21,7 @@ alias gb="git branch"
 alias gc="git commit -v"
 # automatically concatenate the current unstaged changes to the last commit
 g-concat() {
-    git add -A && \
+    git add -u && \
     git commit -a --allow-empty-message -m '' && \
     git reset --soft HEAD~2 && \
     git commit -v --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
