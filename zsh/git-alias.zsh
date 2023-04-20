@@ -59,6 +59,10 @@ gr(){
 }
 alias grs="git restore"
 alias grss="git restore --staged"
+g-rup(){
+    echo "git reset --hard $(utils-git-current-branch)"
+    git reset --hard $(utils-git-current-branch)
+}
 alias gs="git status"
 go() { # git checkout gitout gout go
     git checkout $@
