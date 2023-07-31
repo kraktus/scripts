@@ -63,7 +63,8 @@ def link(from_script_dir: str, to: str):
 		log.info("Files denticals")
 	else:
 		log.info("Files changed")
-		to_path.unlink()
+		if to_path.exists():
+			to_path.unlink()
 		# Warning This function does not make this path a hard link to target, despite the implication of the function and argument names.
 		from_path.link_to(to_path)
 
@@ -72,6 +73,7 @@ def main():
     link("gitignore_global", "~/.gitignore_global")
     link("Sublime/Preferences.sublime-settings", SUBLIME_PATH / "Preferences.sublime-settings")
     link("Sublime/py-template.sublime-snippet", SUBLIME_PATH / "py-template.sublime-snippet")
+    link(".tmux.conf", "~/.tmux.conf")
 
 
 ########
