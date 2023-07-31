@@ -6,6 +6,7 @@
 
 alias clippy-loc="~/Github/rust-clippy/target/debug/cargo-clippy"
 alias dea="deactivate"
+alias del-venv="rm -rf venv/"
 alias ssh-keygen="ssh-keygen -C Sol"
 alias ls="ls -Gp"
 alias lg="lazygit"
