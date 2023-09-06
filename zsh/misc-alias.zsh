@@ -15,6 +15,7 @@ alias lg="lazygit"
 # With exec, all (unexported) variables in your shell are lost
 alias modif="subl --new-window --wait ~/Github/scripts/zsh/* ~/Github/scripts && exec zsh" # https://github.com/sublimehq/sublime_text/issues/4740
 alias modif-p="subl --wait ~/.zshrc && exec zsh"
+alias modif-ssh="subl --wait ~/.ssh/config && exec zsh"
 alias mongo="mongosh"
 alias path="realpath"
 alias profile="python3 -m cProfile -s tottime"

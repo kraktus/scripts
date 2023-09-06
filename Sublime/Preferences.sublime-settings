@@ -9,4 +9,5 @@
 	"show_encoding": true,
 	"font_size": 14,
 	"goto_anything_exclude_gitignore": true,
+	"update_check": true,
 }
