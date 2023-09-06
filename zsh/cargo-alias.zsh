@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # /!\ PUBLIC do NOT commit sensitive stuff (ssh pwd etc) /!\
 
