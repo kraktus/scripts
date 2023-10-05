@@ -51,6 +51,7 @@ s(){
         subl $@
     fi
 }
+alias s-h="subl ~/.zsh_history"
 venv(){
     source venv/bin/activate
     if (( $? )) # https://stackoverflow.com/a/43481571/11955835

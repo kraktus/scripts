@@ -26,7 +26,7 @@ g-concat() {
     git reset --soft HEAD~2 && \
     git commit -v --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
 }
-alias g-clean="git branch --merged | grep -v \* | xargs git branch -D"
+alias g-clean="git checkout master && git branch --merged | grep -v \* | xargs git branch -D"
 alias gd="git diff"
 gp() {
     git push $@
@@ -51,6 +51,9 @@ gph(){
 }
 g-pr(){
     git fetch head pull/$1/head:"pr-$1" --force && git checkout "pr-$1"
+}
+gpto(){
+    git push origin "$(utils-git-current-branch)":$1
 }
 
 # Shortcut for interactive rebase
