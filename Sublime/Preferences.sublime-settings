@@ -4,7 +4,6 @@
 	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
 	"ignored_packages":
 	[
-		"LSP-copilot",
 		"Vintage",
 	],
 	"show_encoding": true,

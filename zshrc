@@ -13,6 +13,10 @@ setopt HIST_IGNORE_DUPS # https://unix.stackexchange.com/a/603977
 setopt EXTENDED_HISTORY # https://linux.die.net/man/1/zshoptions
 SAVEHIST=10000000
 
+# Central shared cargo target directory, sharing builds of common dependencies across projects. 
+# Although clearing it will clear artifacts from all projects
+export CARGO_TARGET_DIR='.cargo/target'
+
 # enable auto-completion for brew added CLI: https://docs.brew.sh/Shell-Completion
 if type brew &>/dev/null
 then
