@@ -15,7 +15,7 @@ SAVEHIST=10000000
 
 # Central shared cargo target directory, sharing builds of common dependencies across projects. 
 # Although clearing it will clear artifacts from all projects
-export CARGO_TARGET_DIR='~/.cargo/target'
+export CARGO_TARGET_DIR="$HOME/.cargo/target"
 
 # enable auto-completion for brew added CLI: https://docs.brew.sh/Shell-Completion
 if type brew &>/dev/null
