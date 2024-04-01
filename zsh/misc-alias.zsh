@@ -7,7 +7,7 @@
 alias clippy-loc="~/Github/rust-clippy/target/debug/cargo-clippy"
 alias dea="deactivate"
 alias del-venv="rm -rf venv/"
-alias ssh-keygen="ssh-keygen -C Sol"
+alias ssh-keygen="ssh-keygen -t ed25519 -C Sol"
 alias ls="ls -Gp"
 alias lg="lazygit"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
