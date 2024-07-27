@@ -1,4 +1,4 @@
- // Symlinked to scripts/Sublime/Preferences.sublime-settings
+  // Symlinked to scripts/Sublime/Preferences.sublime-settings
 {
 	"theme": "auto",
 	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
@@ -7,7 +7,7 @@
 		"Vintage",
 	],
 	"show_encoding": true,
-	"font_size": 14,
+	"font_size": 13,
 	"goto_anything_exclude_gitignore": true,
 	"update_check": true,
 	"index_files": true,
