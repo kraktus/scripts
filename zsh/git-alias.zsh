@@ -71,7 +71,7 @@ g-rup(){ # git reset upstream
     git reset --hard origin/$(utils-git-current-branch)
 }
 alias gs="git status"
-g-o() { # git checkout gitout gout go g-o (due to conflict with go language)
+goo() { # git checkout gitout gout go goo (due to conflict with go language)
     git checkout $@
     if (( $? ))
     then

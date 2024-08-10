@@ -4,7 +4,14 @@
 
 export EDITOR='subl -w'
 
-export LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 # see https://github.com/mobile-shell/mosh/issues/793
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8" # see https://github.com/mobile-shell/mosh/issues/793
+
+
+export PS1="MB1 %~ %# " # "context prompt" (first line of the terminal) COMMENTS BELOW
+# see https://stackoverflow.com/questions/34623956/how-to-get-absolute-path-on-a-zsh-prompt
+# Displays as "MB1 ~/full/path %". `%#` means A ‘#’ if the shell is running with privileges, a ‘%’ if not.
+# from https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
