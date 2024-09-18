@@ -7,7 +7,7 @@
 		"Vintage",
 	],
 	"show_encoding": true,
-	"font_size": 13,
+	"font_size": 12,
 	"goto_anything_exclude_gitignore": true,
 	"update_check": true,
 	"index_files": true,

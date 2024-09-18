@@ -13,6 +13,9 @@ export PS1="MB1 %~ %# " # "context prompt" (first line of the terminal) COMMENTS
 # Displays as "MB1 ~/full/path %". `%#` means A ‘#’ if the shell is running with privileges, a ‘%’ if not.
 # from https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 
+# for scala-cli
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835

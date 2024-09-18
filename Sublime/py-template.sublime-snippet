@@ -15,6 +15,7 @@ import os
 import requests
 import sys
 
+from argparse import RawTextHelpFormatter
 from dataclasses import dataclass
 from datetime import datetime
 from collections import deque
@@ -73,10 +74,21 @@ class Req:
         self.http = http
 
 
+def doc(dic: Dict[str, Callable[..., Any]]) -> str:
+    """Produce documentation for every command based on doc of each function"""
+    doc_string = ""
+    for name_cmd, func in dic.items():
+        doc_string += f"{name_cmd}: {func.__doc__}\n\n"
+    return doc_string
+
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("XXX", help="")
-    args = parser.parse_args()
+    parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
+    # commands = {
+    # "cmd": cmd_function,
+    # }
+    # parser.add_argument("command", choices=commands.keys(), help=doc(commands))
+    # args = parser.parse_args()
+    # commands[args.command]()
 
 ########
 # Main #
