@@ -1,1 +1,2 @@
-install-link.py.log
+*.log
+exported-aliases.sh
