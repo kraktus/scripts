@@ -4,8 +4,11 @@
 
 # nano ~/.local/bin/cron/cpu-monitoring.py
 
-# crontab 
+# crontab -e
 # * * * * * ~/.local/bin/cron/cpu-monitoring.py
+
+# alias rsi="echo 0 > ~/.local/bin/cron/cpu-usage.txt"
+# alias idle="cat ~/.local/bin/cron/cpu-usage.txt"
 
 """Monitor CPU usage, and shut down if idle for more than 15 minutes"""
 
@@ -35,7 +38,7 @@ LOG_PATH = f"{__file__}.log"
 FILE_NAME = os.path.basename(__file__)
 LOCAL_HOME = str(Path.home())
 PARENT_DIR = Path(__file__).resolve().parent
-EC2_CPU_USAGE_LOG_FILE = f"{PARENT_DIR}/cpu-usage-ec2.log"
+CPU_USAGE_LOG_FILE = f"{PARENT_DIR}/cpu-usage.txt"
 
 ########
 # Logs #
@@ -72,18 +75,20 @@ def run_capture(cmd: str) -> str:
 
 def get_idle_time() -> int:
     """Get idle time in minutes"""
-    if not os.path.exists(EC2_CPU_USAGE_LOG_FILE):
+    if not os.path.exists(CPU_USAGE_LOG_FILE):
         return 0
-    with open(EC2_CPU_USAGE_LOG_FILE) as f:
+    with open(CPU_USAGE_LOG_FILE) as f:
         return int(f.read())
 
 def set_idle_time(idle_time: int) -> None:
     """Set idle time"""
-    with open(EC2_CPU_USAGE_LOG_FILE, "w") as f:
+    with open(CPU_USAGE_LOG_FILE, "w") as f:
+        log.debug(f"setting idle_time to {idle_time}")
         f.write(str(idle_time))
 
 def inc_idle_time() -> None:
     """Increment idle time"""
+    log.debug("incrementing idle_time")
     idle_time = get_idle_time()
     set_idle_time(idle_time + 1)
 
@@ -104,6 +109,7 @@ def cpu_monitoring() -> None:
         inc_idle_time()
     if get_idle_time() >= 15:
         set_idle_time(0)
+        log.info("shutting down")
         run("sudo shutdown")
 
 def main() -> None:
