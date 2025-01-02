@@ -110,7 +110,12 @@ def cpu_monitoring() -> None:
     if get_idle_time() >= 15:
         set_idle_time(0)
         log.info("shutting down")
-        run("sudo shutdown")
+        try:
+            run("sudo shutdown")
+        except Exception as e:
+            log.error(f"error shutting down with sudo: {e}")
+            run("shutdown")
+
 
 def main() -> None:
     cpu_monitoring()

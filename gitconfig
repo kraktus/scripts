@@ -10,6 +10,7 @@
 	excludesfile = ~/.gitignore_global
 	# pager = subl --command set_view_scratch -nw - 
 [user]
+	useConfigOnly = true
 	email = kraktus@users.noreply.github.com
 	name = kraktus
 [pull]
@@ -21,3 +22,5 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[include]
+	path = ~/.gitconfig_private
