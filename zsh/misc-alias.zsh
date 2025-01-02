@@ -7,7 +7,6 @@
 alias clippy-loc="~/Github/rust-clippy/target/debug/cargo-clippy"
 alias dea="deactivate"
 alias del-venv="rm -rf venv/"
-alias gem="/opt/homebrew/opt/ruby/bin/gem"
 alias lg="lazygit"
 alias ls="ls -Gp"
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
@@ -35,7 +34,6 @@ pip3(){
 } 
 alias py="python"
 alias py3="python3"
-alias ruby="/opt/homebrew/opt/ruby/bin"
 alias ssh-keygen="ssh-keygen -t ed25519 -C Sol"
 s(){
     local project="$(ls | grep .sublime-project)"

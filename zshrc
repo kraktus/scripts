@@ -15,6 +15,9 @@ export PS1="MB1 %~ %# " # "context prompt" (first line of the terminal) COMMENTS
 
 # for scala-cli
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# for rails/gems 
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
 
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
