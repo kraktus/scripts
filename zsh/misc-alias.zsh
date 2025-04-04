@@ -87,3 +87,54 @@ watermark(){
           miff:- |\
     magick composite -tile - "$IMAGE"  "${FILENAME}_watermarked.${IMAGE_EXT}"
 }
+
+watermark-pdf() {
+  local input_pdf="$1"
+  local watermark_text="$2"
+  local output_pdf="watermarked_${input_pdf}"
+
+  # Create a temporary directory
+  temp_dir=$(mktemp -d)
+  
+  # Split the PDF into individual pages
+  magick -density 300 "$input_pdf" "$temp_dir/page_%04d.png"
+  
+  # Add watermark to each page
+  for page in "$temp_dir"/*.png; do
+    magick "$page" -gravity center -pointsize 100 -fill 'rgba(255,0,0,0.4)' \
+      -draw "gravity Center rotate -45 text 0,0 '$watermark_text'" miff:- |\
+    magick "$page" - -compose DstOver -tile - "$page"
+  done
+  
+  # Combine watermarked pages back into a PDF
+  magick "$temp_dir/page_*.png" "$output_pdf"
+  
+  # Clean up temporary files
+  rm -rf "$temp_dir"
+  
+  echo "Watermarked PDF saved as $output_pdf"
+}
+
+# Watermark all files in a directory
+watermark-dir(){
+    local DIR="$1"
+    local WATERMARK_TEXT="$2"
+
+    if [ ! -d "$DIR" ]; then
+        echo "Directory not found!"
+        return 1
+    fi
+
+    if [ -z "$WATERMARK_TEXT" ]; then
+        echo "Usage: watermark-dir <directory> <watermark text>"
+        return 1
+    fi
+
+    for FILE in "$DIR"/*; do
+        if [ -f "$FILE" ]; then
+            watermark "$FILE" "$WATERMARK_TEXT"
+        fi
+    done
+
+    echo "All files in $DIR have been watermarked."
+}
