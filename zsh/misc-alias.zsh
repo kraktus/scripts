@@ -61,3 +61,30 @@ venv(){
         source venv/bin/activate
     fi
 }
+# watermark image.png "Watermark Text"
+watermark(){
+    local IMAGE="$1"
+    if [ ! -f "$IMAGE" ]; then
+        echo "File not found!"
+        return 1
+    fi
+    if [ -z "$2" ]; then
+        echo "Usage: watermark <image> <watermark text>"
+        return 1
+    fi
+    if ! command -v magick &> /dev/null
+    then
+        echo "ImageMagick not found, please install it first."
+        return 1
+    fi
+    # get file without extension
+    local FILENAME=$(basename "$IMAGE")
+    local IMAGE_EXT="${FILENAME##*.}"
+    local WATERMARK_TEXT="$2"
+    # https://usage.imagemagick.org/annotating/#watermarking
+      magick -size 140x80 xc:none -fill grey \
+          -gravity NorthWest -draw "text 10,10 '$WATERMARK_TEXT'" \
+          -gravity SouthEast -draw "text 5,15 '$WATERMARK_TEXT'" \
+          miff:- |\
+    magick composite -tile - "$IMAGE"  "${FILENAME}_watermarked.${IMAGE_EXT}"
+}
