@@ -82,8 +82,8 @@ watermark(){
     local IMAGE_EXT="${FILENAME##*.}"
     local WATERMARK_TEXT="$2"
     # https://usage.imagemagick.org/annotating/#watermarking
-      magick -size 200x200 xc:none -fill red \
-          -gravity center -pointsize 50 -draw "rotate -45 text 10,10 '$WATERMARK_TEXT'" \
+      magick -size 600x450 xc:none -fill "rgba(255,0,0,0.4)" \
+          -gravity center -pointsize 100 -draw "rotate -45 text 10,10 '$WATERMARK_TEXT'" \
           miff:- |\
     magick composite -tile - "$IMAGE"  "${FILENAME}_watermarked.${IMAGE_EXT}"
 }
