@@ -13,6 +13,11 @@ export PS1="MB1 %~ %# " # "context prompt" (first line of the terminal) COMMENTS
 # Displays as "MB1 ~/full/path %". `%#` means A ‘#’ if the shell is running with privileges, a ‘%’ if not.
 # from https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 
+# enable auto-completion for brew https://docs.brew.sh/Shell-Completion
+eval "$(brew shellenv)"
+autoload -Uz compinit
+compinit
+
 # for scala-cli
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # for rails/gems 
@@ -29,15 +34,6 @@ SAVEHIST=10000000
 # Central shared cargo target directory, sharing builds of common dependencies across projects. 
 # Although clearing it will clear artifacts from all projects
 export CARGO_TARGET_DIR="$HOME/.cargo/target"
-
-# enable auto-completion for brew added CLI: https://docs.brew.sh/Shell-Completion
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-  autoload -Uz compinit
-  compinit
-fi
 
 # aliases
 for zsh_file (~/Github/scripts/zsh/*.zsh) source $zsh_file
