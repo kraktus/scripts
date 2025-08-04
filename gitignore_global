@@ -1,8 +1,11 @@
 .DS_Store
 discord.log
 .env
-/venv
+venv/
 sn.sh
 ssh.sh
 .aider*
 zuliprc
+.bsp/
+__pycache__/
+*.log
