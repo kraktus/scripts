@@ -2,22 +2,19 @@
     <content><![CDATA[#!/bin/sh
 
 newTmuxSessionScript() {
-  local SESSION_NAME=$$1
-  tmux new-session -s "$$SESSION_NAME" -d
+  local SESSION_NAME=\$1
+  tmux new-session -s "\$SESSION_NAME" -d
   tmux split-window -d
   tmux split-window -d
   tmux split-window -d
-  tmux send-keys -t "$$SESSION_NAME".1 "pnpm run css-w" C-m
-  tmux send-keys -t "$$SESSION_NAME".2 "py3 -m http.server" C-m
-  tmux send-keys -t "$$SESSION_NAME".4 "scala-cli --jvm system index.scala > index.html" C-m
-  tmux attach-session -t "$$SESSION_NAME"
+  tmux send-keys -t "\$SESSION_NAME".1 "pnpm run css-w" C-m
+  tmux send-keys -t "\$SESSION_NAME".2 "py3 -m http.server" C-m
+  tmux send-keys -t "\$SESSION_NAME".4 "scala-cli --jvm system index.scala > index.html" C-m
+  tmux attach-session -t "\$SESSION_NAME"
 }
 
-newTmuxSessionScript bia-poc]]></content>
-    <!-- Optional: Tab trigger to activate the snippet -->
+newTmuxSessionScript bia-poc
+]]></content>
     <tabTrigger>template-tmux</tabTrigger>
-    <!-- Optional: Scope the tab trigger will be active in -->
-    <!-- <scope>source.sh</scope> -->
-    <!-- Optional: Description to show in the menu -->
-    <description>Tmux file template</description>
+    <description>Tmux file template WOOHO</description>
 </snippet>

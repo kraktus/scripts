@@ -2,6 +2,8 @@
 discord.log
 .env
 venv/
+# uv
+.venv/
 sn.sh
 ssh.sh
 .aider*

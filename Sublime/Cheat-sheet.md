@@ -9,3 +9,5 @@
 
 - Open git blame for the line: Ctrl Alt B
 - Open git blame for the whole file: Ctrl Alt Shift B
+
+- To prettify JSON, use the command palette
