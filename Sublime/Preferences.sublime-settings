@@ -12,4 +12,5 @@
 	"update_check": true,
 	"index_files": true,
 	"translate_tabs_to_spaces": true,
+	"native_tabs": "preferred",
 }
