@@ -30,7 +30,7 @@ from collections import deque
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Optional, List, Union, Tuple
+from typing import Any, Callable, Dict, Optional, List, Union, Tuple
 
 from dotenv import load_dotenv
 from requests.adapters import HTTPAdapter
@@ -43,6 +43,7 @@ from requests.packages.urllib3.util.retry import Retry
 
 load_dotenv()
 
+SCRIPT_DIR = Path(__file__).resolve(strict=True).parent
 LOG_PATH = f"{__file__}.log"
 RETRY_STRAT = Retry(
     total=5,

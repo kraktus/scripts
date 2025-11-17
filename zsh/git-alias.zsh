@@ -39,18 +39,19 @@ gp() {
     fi
 }
 alias gpf="git push -f"
-gph(){
-    echo "git pull head $(utils-git-current-branch) && git push"
-    git pull head $(utils-git-current-branch) && git push
+gph(){ # git pull head, but since head has been renamed to upst (for upstream)
+    # to avoid git issues with object being called `head`
+    echo "git pull upst $(utils-git-current-branch) && git push"
+    git pull upst $(utils-git-current-branch) && git push
     if (( $? ))
     then
-        echo "Error with remote head, trying origin"
+        echo "Error with remote upst, trying origin"
         echo "git pull origin $(utils-git-current-branch) && git push"
         git pull origin $(utils-git-current-branch) && git push
     fi
 }
 g-pr(){
-    git fetch head pull/$1/head:"pr-$1" --force && git checkout "pr-$1"
+    git fetch upst pull/$1/head:"pr-$1" --force && git checkout "pr-$1"
 }
 gpto(){
     git push origin "$(utils-git-current-branch)":$1
@@ -63,8 +64,8 @@ gr(){
 alias grs="git restore"
 alias grss="git restore --staged"
 g-rhup(){ # git reset head upstream 
-    echo "git reset --hard head/$(utils-git-current-branch)"
-    git reset --hard head/$(utils-git-current-branch)
+    echo "git reset --hard upst/$(utils-git-current-branch)"
+    git reset --hard upst/$(utils-git-current-branch)
 }
 g-rup(){ # git reset upstream 
     echo "git reset --hard origin/$(utils-git-current-branch)"
