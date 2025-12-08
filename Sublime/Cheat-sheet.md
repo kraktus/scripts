@@ -6,6 +6,7 @@
 - Cursor on each line selected: Cmd Shift L
 - Open/Close the console: Ctrl \`
 - Sort selected lines: fn f5
+- Change "layout" (view panes): Cmd Opt 1/2/3/4
 
 - Open git blame for the line: Ctrl Alt B
 - Open git blame for the whole file: Ctrl Alt Shift B
