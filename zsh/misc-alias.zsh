@@ -61,6 +61,9 @@ venv(){
         source venv/bin/activate
     fi
 }
+vibe(){
+    bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"
+}
 # watermark image.png "Watermark Text"
 watermark(){
     local IMAGE="$1"
