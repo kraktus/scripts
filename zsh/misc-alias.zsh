@@ -4,6 +4,16 @@
 
 # Never make an alias dependent of another one, only rename
 
+agpl(){
+    # if no LICENCE or LICENSE in current current directory
+    if [ ! -f LICENSE ] && [ ! -f LICENCE ]
+    then
+        cp ~/Github/scripts/LICENSE LICENSE
+    else
+        echo "LICENSE or LICENCE file already exists, aborting"
+    fi
+
+}
 alias clippy-loc="~/Github/rust-clippy/target/debug/cargo-clippy"
 alias dea="deactivate"
 alias del-venv="rm -rf venv/"
