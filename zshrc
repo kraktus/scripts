@@ -24,14 +24,6 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
