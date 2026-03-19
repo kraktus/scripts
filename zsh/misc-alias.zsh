@@ -61,6 +61,20 @@ s(){
         subl $@
     fi
 }
+tm() {
+
+  local SESSION_NAME=$1
+  # if session name is not none, no name
+  if [ -z "$SESSION_NAME" ]
+  then
+    tmux new-session -s "$SESSION_NAME" -d
+  else
+    tmux new-session -d
+  fi
+  
+  tmux split-window -d
+  tmux attach-session -t "$SESSION_NAME"
+}
 alias s-h="subl ~/.zsh_history"
 venv(){
     source venv/bin/activate
@@ -73,6 +87,9 @@ venv(){
 }
 vibe(){
     bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"
+}
+vibe2(){
+    uv run -m "$HOME/Github/call-my-agent" --agent-args opencode
 }
 # watermark image.png "Watermark Text"
 watermark(){

@@ -1,7 +1,7 @@
-    // Symlinked to scripts/Sublime/Preferences.sublime-settings
+     // Symlinked to scripts/Sublime/Preferences.sublime-settings
 {
 	"theme": "auto",
-	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+	"color_scheme": "Mariana.sublime-color-scheme",
 	"ignored_packages":
 	[
 		"Vintage",

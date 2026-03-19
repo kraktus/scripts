@@ -24,6 +24,11 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
 
+# for runed/ contribution, tests failing on node25
+# https://github.com/vitest-dev/vitest/issues/8757
+# https://github.com/nodejs/node/issues/60303
+export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
+
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 setopt AUTO_CD
 setopt INC_APPEND_HISTORY # https://stackoverflow.com/a/45639156/11955835
