@@ -92,3 +92,4 @@ gom() {
     fi
 }
 gomph() { gom && gph; }
+alias lgit="~/Github/git/git"

@@ -85,11 +85,11 @@ venv(){
         source venv/bin/activate
     fi
 }
-vibe(){
-    bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"
+v(){ # vibe
+    uv --project "$HOME/Github/call-my-agent" run call-my-agent
 }
-vibe2(){
-    uv run -m "$HOME/Github/call-my-agent" --agent-args opencode
+vb(){ # vibe backup
+    bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"
 }
 # watermark image.png "Watermark Text"
 watermark(){

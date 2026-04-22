@@ -11,3 +11,4 @@ zuliprc
 .bsp/
 __pycache__/
 *.log
+.opencode/
