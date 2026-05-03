@@ -33,10 +33,14 @@ def get_author(commit):
 
 
 def find_stop_commit():
+    # wait to find a first bad commit
+    dirty = 0
     for commit in get_commits():
         name, email = get_author(commit)
-        if name == TARGET_NAME and email == TARGET_EMAIL:
+        if (dirty > 3) and name == TARGET_NAME and email == TARGET_EMAIL:
             return commit
+        else:
+            dirty += 1
     return None
 
 
@@ -49,12 +53,13 @@ def main():
 
     print(f"Stopping at commit: {stop_commit}")
     if not input('Continue? '):
+        print("Stopping")
         sys.exit(0)
 
     # Prepare rebase todo editor script
     editor_script = tempfile.NamedTemporaryFile(delete=False, mode="w")
-    editor_script.write(f"""#!/bin/bash
-sed -i 's/^pick /edit /g' "$1"
+    editor_script.write("""#!/bin/bash
+sed -i '' 's/^pick /edit /g' "$1"
 """)
     editor_script.close()
     os.chmod(editor_script.name, 0o755)
