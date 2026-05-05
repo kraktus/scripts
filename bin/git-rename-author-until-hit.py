@@ -37,7 +37,7 @@ def find_stop_commit():
     dirty = 0
     for commit in get_commits():
         name, email = get_author(commit)
-        if (dirty > 3) and name == TARGET_NAME and email == TARGET_EMAIL:
+        if (dirty >= 2) and name == TARGET_NAME and email == TARGET_EMAIL:
             return commit
         else:
             dirty += 1
