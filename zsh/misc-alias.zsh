@@ -86,7 +86,7 @@ venv(){
     fi
 }
 v(){ # vibe
-    uv --project "$HOME/Github/call-my-agent" run call-my-agent $@
+    uv --project "$HOME/Github/call-my-agent" run call-my-agent run $@
 }
 vb(){ # vibe backup
     bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"

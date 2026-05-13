@@ -12,3 +12,6 @@ zuliprc
 __pycache__/
 *.log
 .opencode/
+node_modules/
+target/
+.pnpm-store/
