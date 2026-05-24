@@ -83,13 +83,19 @@ tm() {
   # if session name is not none, no name
   if [ -z "$SESSION_NAME" ]
   then
-    tmux new-session -s "$SESSION_NAME" -d
-  else
     tmux new-session -d
+  else
+    tmux new-session -s "$SESSION_NAME" -d
   fi
-  
   tmux split-window -d
-  tmux attach-session -t "$SESSION_NAME"
+  tmux split-window -d
+
+  if [ -z "$SESSION_NAME" ]
+  then
+    tmux attach-session
+  else
+    tmux attach-session -t "$SESSION_NAME"
+  fi
 }
 alias s-h="subl ~/.zsh_history"
 venv(){
