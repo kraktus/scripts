@@ -19,6 +19,22 @@ alias dea="deactivate"
 alias del-venv="rm -rf venv/"
 alias lg="lazygit"
 alias ls="ls -Gp"
+minify-vid() {
+  if [ -z "$1" ]; then
+    echo "Usage: minify-vid input.mov [output.mp4]"
+    return 1
+  fi
+
+  input="$1"
+  output="${2:-${input%.*}.mp4}"
+
+  ffmpeg -i "$input" \
+    -c:v libx264 -crf 34 -preset veryfast \
+    -vf "scale=1280:-2" \
+    -c:a aac -b:a 64k \
+    -movflags +faststart \
+    "$output"
+}
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
 # https://stackoverflow.com/questions/56284264/recommended-method-for-reloading-zshrc-source-vs-exec#56303297
 # With exec, all (unexported) variables in your shell are lost
