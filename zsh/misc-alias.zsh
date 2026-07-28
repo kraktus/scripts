@@ -37,7 +37,7 @@ minify-vid() {
 }
 minify-img() {
   if [ -z "$1" ]; then
-    echo "Usage: minify-img input.png [output.png]"
+    echo "Usage: minify-img input.png [output_minified.jpeg]"
     return 1
   fi
 
