@@ -35,6 +35,17 @@ minify-vid() {
     -movflags +faststart \
     "$output"
 }
+minify-img() {
+  if [ -z "$1" ]; then
+    echo "Usage: minify-img input.png [output.png]"
+    return 1
+  fi
+
+  input="$1"
+  output="${2:-${input%.*}_minified.jpeg}"
+  magick "$input" -sampling-factor 4:4:4 -quality 10 "$output"
+
+}
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
 # https://stackoverflow.com/questions/56284264/recommended-method-for-reloading-zshrc-source-vs-exec#56303297
 # With exec, all (unexported) variables in your shell are lost
