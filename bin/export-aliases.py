@@ -24,7 +24,7 @@ from typing import Optional, List, Union, Tuple
 # Constants #
 #############
 
-
+REPO_DIR = Path(__file__).resolve(strict=True).parent.parent
 LOG_PATH = f"{__file__}.log"
 
 ########
@@ -53,12 +53,12 @@ log.addHandler(handler_2)
 def main() -> None:
 	# concatenate all the files in zsh/*.zsh folder as exported-aliases.sh
 	res = []
-	for file in Path("zsh").glob("*.zsh"):
+	for file in (REPO_DIR / "zsh").glob("*.zsh"):
 		with open(file, "r") as f:
 			# strip comments
 			lines = [line for line in f.readlines() if not (line.startswith("#") or line.strip() == "")]
 			res.extend(lines)
-	with open("exported-aliases.sh", "w") as f:
+	with open(REPO_DIR / "exported-aliases.sh", "w") as f:
 		f.write("\n".join(res))
 ########
 # Main #
