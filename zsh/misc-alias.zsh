@@ -118,8 +118,21 @@ venv(){
         source venv/bin/activate
     fi
 }
-v(){ # vibe
-    uv --project "$HOME/Github/call-my-agent" run call-my-agent run $@
+v(){ # vibe, tmux in tmux: top pane runs the agent, bottom one-line pane to interact with sublime
+    local SESSION_NAME="vibe-$(date +%s)"
+    local RUN_COMMAND="uv --project \"$HOME/Github/call-my-agent\" run call-my-agent run $*"
+
+    tmux new-session -d -s "$SESSION_NAME"
+    tmux send-keys -t "$SESSION_NAME".1 "$RUN_COMMAND" C-m
+    tmux split-window -v -t "$SESSION_NAME".1
+    tmux resize-pane -t "$SESSION_NAME".2 -y 1
+    tmux set-hook -t "$SESSION_NAME".1 window-resized "resize-pane -t \"$SESSION_NAME\".2 -y 1"
+    tmux select-pane -t "$SESSION_NAME".1
+    if [[ -n "$TMUX" ]]; then
+        tmux switch-client -t "$SESSION_NAME"
+    else
+        tmux attach-session -t "$SESSION_NAME"
+    fi
 }
 vb(){ # vibe backup
     bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"
