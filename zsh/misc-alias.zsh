@@ -137,58 +137,133 @@ v(){ # vibe, tmux in tmux: top pane runs the agent, bottom one-line pane to inte
 vb(){ # vibe backup
     bash -lc "$("$HOME/Github/agent-en-place/agent-en-place" $1)"
 }
+_watermark_tile() {
+    local text="$1"
+    local output="$2"
+    local font
+    local font_args=()
+    if font=$(_watermark_font); then
+        font_args=(-font "$font")
+    fi
+    magick -background none "${font_args[@]}" -fill 'rgba(255,0,0,0.35)' \
+        -pointsize 60 label:"$text" -trim +repage -rotate -45 \
+        -trim +repage -bordercolor none -border 20 "$output"
+}
+
+_watermark_fill() {
+    local input="$1"
+    local tile="$2"
+    local output="$3"
+    local temp_dir="$4"
+    local color_type=2
+    case "$(magick "$input" -format '%A' info:)" in
+        Undefined|False) color_type=2 ;;
+        *) color_type=6 ;;
+    esac
+    local base="$temp_dir/base.png"
+    if ! magick "$input" -define png:color-type=$color_type "$base"; then
+        return 1
+    fi
+    local dims
+    dims=$(magick identify -format '%wx%h' "$base")
+    magick "$base" \( -size "$dims" tile:"$tile" \) -compose Over -composite "$output"
+}
+
 # watermark image.png "Watermark Text"
 watermark(){
     local IMAGE="$1"
-    if [ ! -f "$IMAGE" ]; then
-        echo "File not found!"
-        return 1
-    fi
-    if [ -z "$2" ]; then
+    local WATERMARK_TEXT="$2"
+
+    if [ -z "$IMAGE" ] || [ -z "$WATERMARK_TEXT" ]; then
         echo "Usage: watermark <image> <watermark text>"
         return 1
     fi
-    if ! command -v magick &> /dev/null
-    then
+    if [ ! -f "$IMAGE" ]; then
+        echo "File not found: $IMAGE"
+        return 1
+    fi
+    if ! command -v magick &> /dev/null; then
         echo "ImageMagick not found, please install it first."
         return 1
     fi
-    # get file without extension
-    local FILENAME=$(basename "$IMAGE")
-    local IMAGE_EXT="${FILENAME##*.}"
-    local WATERMARK_TEXT="$2"
-    # https://usage.imagemagick.org/annotating/#watermarking
-      magick -size 600x450 xc:none -fill "rgba(255,0,0,0.4)" \
-          -gravity center -pointsize 100 -draw "rotate -45 text 10,10 '$WATERMARK_TEXT'" \
-          miff:- |\
-    magick composite -tile - "$IMAGE"  "${FILENAME}_watermarked.${IMAGE_EXT}"
+
+    local output_image="$(dirname "$IMAGE")/watermarked_$(basename "$IMAGE")"
+    local temp_dir
+    temp_dir=$(mktemp -d) || return 1
+
+    if ! _watermark_tile "$WATERMARK_TEXT" "$temp_dir/tile.png"; then
+        echo "Failed to build watermark"
+        rm -rf "$temp_dir"
+        return 1
+    fi
+
+    if ! _watermark_fill "$IMAGE" "$temp_dir/tile.png" "$output_image" "$temp_dir"; then
+        echo "Failed to watermark image"
+        rm -rf "$temp_dir"
+        return 1
+    fi
+
+    rm -rf "$temp_dir"
+    echo "Watermarked image saved as $output_image"
+}
+
+_watermark_font() {
+    local f
+    for f in \
+        /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf \
+        /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf \
+        "/System/Library/Fonts/Supplemental/Arial Bold.ttf" \
+        /System/Library/Fonts/Supplemental/Arial.ttf \
+        /System/Library/Fonts/Helvetica.ttc; do
+        [[ -r "$f" ]] && { print -r -- "$f"; return 0 }
+    done
+    return 1
 }
 
 watermark-pdf() {
-  local input_pdf="$1"
-  local watermark_text="$2"
-  local output_pdf="watermarked_${input_pdf}"
+    local input_pdf="$1"
+    local watermark_text="$2"
 
-  # Create a temporary directory
-  temp_dir=$(mktemp -d)
-  
-  # Split the PDF into individual pages
-  magick -density 300 "$input_pdf" "$temp_dir/page_%04d.png"
-  
-  # Add watermark to each page
-  for page in "$temp_dir"/*.png; do
-    magick "$page" -gravity center -pointsize 100 -fill 'rgba(255,0,0,0.4)' \
-      -draw "gravity Center rotate -45 text 0,0 '$watermark_text'" miff:- |\
-    magick "$page" - -compose DstOver -tile - "$page"
-  done
-  
-  # Combine watermarked pages back into a PDF
-  magick "$temp_dir/page_*.png" "$output_pdf"
-  
-  # Clean up temporary files
-  rm -rf "$temp_dir"
-  
-  echo "Watermarked PDF saved as $output_pdf"
+    if [ -z "$input_pdf" ] || [ -z "$watermark_text" ]; then
+        echo "Usage: watermark-pdf <file.pdf> <watermark text>"
+        return 1
+    fi
+    if [ ! -f "$input_pdf" ]; then
+        echo "File not found: $input_pdf"
+        return 1
+    fi
+    if ! command -v magick &> /dev/null; then
+        echo "ImageMagick not found, please install it first."
+        return 1
+    fi
+
+    local output_pdf="$(dirname "$input_pdf")/watermarked_$(basename "$input_pdf")"
+    local temp_dir
+    temp_dir=$(mktemp -d) || return 1
+
+    local density=150
+
+    if ! magick -density "$density" "$input_pdf" "$temp_dir/page_%04d.png"; then
+        echo "Failed to read PDF (is Ghostscript installed?)"
+        rm -rf "$temp_dir"
+        return 1
+    fi
+
+    if ! _watermark_tile "$watermark_text" "$temp_dir/tile.png"; then
+        echo "Failed to build watermark"
+        rm -rf "$temp_dir"
+        return 1
+    fi
+
+    local page
+    for page in "$temp_dir"/page_*.png; do
+        _watermark_fill "$page" "$temp_dir/tile.png" "$temp_dir/wm_$(basename "$page")" "$temp_dir" || continue
+    done
+
+    magick "$temp_dir"/wm_page_*.png "$output_pdf"
+    rm -rf "$temp_dir"
+
+    echo "Watermarked PDF saved as $output_pdf"
 }
 
 # Watermark all files in a directory
