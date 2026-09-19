@@ -187,7 +187,7 @@ watermark(){
         return 1
     fi
 
-    local output_image="$(dirname "$IMAGE")/watermarked_$(basename "$IMAGE")"
+    local output_image="$(dirname "$IMAGE")/${WATERMARK_TEXT// /}$(basename "$IMAGE")"
     local temp_dir
     temp_dir=$(mktemp -d) || return 1
 
@@ -237,7 +237,7 @@ watermark-pdf() {
         return 1
     fi
 
-    local output_pdf="$(dirname "$input_pdf")/watermarked_$(basename "$input_pdf")"
+    local output_pdf="$(dirname "$input_pdf")/${watermark_text// /}$(basename "$input_pdf")"
     local temp_dir
     temp_dir=$(mktemp -d) || return 1
 
