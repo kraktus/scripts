@@ -19,32 +19,38 @@ alias dea="deactivate"
 alias del-venv="rm -rf venv/"
 alias lg="lazygit"
 alias ls="ls -Gp"
-minify-vid() {
+minify() {
   if [ -z "$1" ]; then
-    echo "Usage: minify-vid input.mov [output.mp4]"
+    echo "Usage: minify input.(mov|mp4|...|png|jpg|...) [output]"
     return 1
   fi
 
   input="$1"
-  output="${2:-${input%.*}.mp4}"
+  ext="${${input##*.}:l}"
 
-  ffmpeg -i "$input" \
-    -c:v libx264 -crf 34 -preset veryfast \
-    -vf "scale=1280:-2" \
-    -c:a aac -b:a 64k \
-    -movflags +faststart \
-    "$output"
-}
-minify-img() {
-  if [ -z "$1" ]; then
-    echo "Usage: minify-img input.png [output_minified.jpeg]"
-    return 1
-  fi
-
-  input="$1"
-  output="${2:-${input%.*}_minified.jpeg}"
-  magick "$input" -sampling-factor 4:4:4 -quality 10 "$output"
-
+  case "$ext" in
+    mp4|mov|avi|mkv|webm|m4v|flv|wmv|mpg|mpeg)
+      output="${2:-${input%.*}.mp4}"
+      ffmpeg -i "$input" \
+        -c:v libx264 -crf 34 -preset veryfast \
+        -vf "scale=1280:-2" \
+        -c:a aac -b:a 64k \
+        -movflags +faststart \
+        "$output"
+      ;;
+    png|jpg|jpeg|gif|bmp|tiff|tif|webp|heic|heif)
+      output="${2:-${input%.*}_minified.jpeg}"
+      magick "$input" -sampling-factor 4:4:4 -quality 10 "$output"
+      ;;
+    pdf)
+      output="${2:-${input%.*}_minified.pdf}"
+      magick -density 150 "$input" -quality 50 "$output"
+      ;;
+    *)
+      echo "Unsupported file type: .$ext"
+      return 1
+      ;;
+  esac
 }
 # https://github.com/romkatv/powerlevel10k#weird-things-happen-after-typing-source-zshrc
 # https://stackoverflow.com/questions/56284264/recommended-method-for-reloading-zshrc-source-vs-exec#56303297
